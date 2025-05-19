@@ -10,8 +10,11 @@ import tempfile
 import os
 
 class DeepRhythmPredictor:
-    def __init__(self, model_path='deeprhythm-0.5.pth', device=None, quiet=False):
-        self.model_path = get_weights(quiet=quiet)
+    def __init__(self, model_path=None, device=None, quiet=False):
+        if not model_path:
+            self.model_path = get_weights(quiet=quiet)
+        else:
+            self.model_path = model_path
         if device is None:
             self.device = get_device()
         else:
